@@ -30,21 +30,20 @@ The program evaluates password length and the presence of:
 2. Run:
 
 ```bash
-python password_strength_checker.py
+python password_checker.py
 ```
 
 3. Enter a password when prompted.
 
 ## Sample Output
-
-Password: Hello123
-
-Strength: Medium
-
-Password: Hello@123
-
-Strength: Strong
-
+PASSWORD STRENGTH CHECKER
+Enter your password to check its strength: Hello
+Entered Password is:  Hello
+The length of entered password is :  5
+Your password is weak.
+Suggestions:
+Add at least one digit to make the password stronger.
+Add at least one symbol to improve password security.
 ## Author
 
 Kinza Noor
