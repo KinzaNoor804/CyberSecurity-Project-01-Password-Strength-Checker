@@ -1,49 +1,48 @@
 print("PASSWORD STRENGTH CHECKER")
 
 password = input("Enter your password to check its strength: ")
-print("Entered Password is: ", password)
+print(f"Entered Password is: {password}")
 
 length = len(password)
-print("The length of entered password is : ", length)
+print(f"The length of entered password is : {lenght}") # f-string is better than print(str, val)
 
-hasUpperCase = False;
-hasSymbols = False;
-hasDigits = False;
+complexity = 4
+has_uppercase = False
+has_symbols = False
+has_digits = False
 
 for char in password:
     if char.isupper():
-        hasUpperCase = True;
+        has_uppercase = True
     if char.isdigit():
-        hasDigits = True
+        has_digits = True
     if not char.isalnum():
-        hasSymbols = True;
-
+        has_symbols = True
 
 if length < 8:
-    print("Your password is weak.")
+    print("Your password is too short.")
+    complexity -= 1
 
-elif hasDigits and hasSymbols and hasUpperCase:
-    print("Your password is strong.")
-
-elif hasUpperCase and hasDigits:
-    print("Your password is medium.")
-else:
-    print("Your password is weak.")
-
-if not hasUpperCase or not hasDigits or  not hasSymbols:
-    print("Suggestions:")
-
-    if not hasDigits:
+# If even one of the three (has_digits, has_symbols, has_uppercase) is falsy:
+if not all([has_digits, has_symbols, has_uppercase]):
+    if not has_digits:
         print("Add at least one digit to make the password stronger.")
-    if not hasSymbols:
+        complexity -= 1
+    if not has_symbols:
         print("Add at least one symbol to improve password security.")
-    if not hasUpperCase:
+        complexity -= 1
+    if not has_uppercase:
         print("Add at least one uppercase letter to improve password strength.")
+        complexity -= 1
 
-
-
-
-
-
-
-
+match complexity:
+    case 4:
+        print("Your password is strong.")
+    case 3:
+        print("Your password is medium.")
+    case 2:
+        print("Your password is medium.")
+    case 1:
+        print("Your password is weak.")
+    case 0:
+        print("Your password is too weak; it's recommended that you change it.")
